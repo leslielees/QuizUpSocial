@@ -1,0 +1,26 @@
+{
+  "name": "quizupsocial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leslielees/QuizUpSocial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leslielees/QuizUpSocial/issues"
+  },
+  "homepage": "https://github.com/leslielees/QuizUpSocial#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.0",
+    "morgan": "^1.9.0"
+  }
+}
