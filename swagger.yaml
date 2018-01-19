@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: 1.0.0
-  title: Swagger Petstore
+  title: QuizUp Social API
   license:
     name: MIT
 host: social.quizup.swagger.io
@@ -13,12 +13,12 @@ consumes:
 produces:
   - application/json
 paths:
-  /pets:
+  /players:
     get:
-      summary: List all pets
-      operationId: listPets
+      summary: List all players
+      operationId: listPlayers
       tags:
-        - pets
+        - players
       parameters:
         - name: limit
           in: query
@@ -28,22 +28,22 @@ paths:
           format: int32
       responses:
         "200":
-          description: A paged array of pets
+          description: A paged array of players
           headers:
             x-next:
               type: string
               description: A link to the next page of responses
           schema:
-            $ref: '#/definitions/Pets'
+            $ref: '#/definitions/Players'
         default:
           description: unexpected error
           schema:
             $ref: '#/definitions/Error'
     post:
-      summary: Create a pet
-      operationId: createPets
+      summary: Create a player
+      operationId: createPlayers
       tags:
-        - pets
+        - players
       responses:
         "201":
           description: Null response
@@ -51,29 +51,29 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/Error'
-  /pets/{petId}:
+  /players/{playerId}:
     get:
-      summary: Info for a specific pet
-      operationId: showPetById
+      summary: Info for a specific player
+      operationId: showPlayerById
       tags:
-        - pets
+        - players
       parameters:
-        - name: petId
+        - name: playerId
           in: path
           required: true
-          description: The id of the pet to retrieve
+          description: The id of the player to retrieve
           type: string
       responses:
         "200":
           description: Expected response to a valid request
           schema:
-            $ref: '#/definitions/Pets'
+            $ref: '#/definitions/Players'
         default:
           description: unexpected error
           schema:
             $ref: '#/definitions/Error'
 definitions:
-  Pet:
+  Player:
     required:
       - id
       - name
@@ -85,10 +85,10 @@ definitions:
         type: string
       tag:
         type: string
-  Pets:
+  Players:
     type: array
     items:
-      $ref: '#/definitions/Pet'
+      $ref: '#/definitions/Player'
   Error:
     required:
       - code
