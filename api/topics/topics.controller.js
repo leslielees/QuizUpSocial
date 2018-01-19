@@ -10,7 +10,7 @@ const getAllTopics = function(done) {
 }
 
 const getTopic = function(topicName, done) {
-  topicService.getAllTopics(topicName, done);
+  topicService.getTopic(topicName, done);
 }
 
 module.exports = {
