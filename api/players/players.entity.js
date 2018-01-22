@@ -7,8 +7,8 @@ let schema = new mongoose.Schema({
     lastName: { type: String },
   },
   nickname: { type: String, unique: true },
-  email: { email: String, unique: true, required: true },
-  password: { password: String, required: true },
+  email: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
   profilePic: { type: String },
   totalGamesPlayed: { type: Number }
 }, { collection: 'players' });
