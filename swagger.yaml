@@ -39,18 +39,6 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/Error'
-    post:
-      summary: Create a player
-      operationId: createPlayers
-      tags:
-        - players
-      responses:
-        "201":
-          description: Null response
-        default:
-          description: unexpected error
-          schema:
-            $ref: '#/definitions/Error'
   /players/{playerId}:
     get:
       summary: Info for a specific player
@@ -72,6 +60,79 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/Error'
+  /topics:
+    get:
+      summary: List all topics
+      operationId: listTopics
+      tags:
+        - topics
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of topics
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Topics'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /topics/{topicId}:
+    get:
+      summary: Info for a specific topic
+      operationId: showTopicById
+      tags:
+        - topics
+      parameters:
+        - name: topicId
+          in: path
+          required: true
+          description: The id of the topic to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/Topics'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /topics/{topicId}/posts/{postId}:
+    get:
+      summary: Show the particular post for a specific topic
+      operationId: showPostById
+      tags:
+        - posts
+      parameters:
+        - name: topicId
+          in: path
+          required: true
+          description: The id of the topic to retrieve
+          type: string
+        - name: postId
+          in: path
+          required: true
+          description: The id of the post to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/Post'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
   Player:
     required:
@@ -89,6 +150,43 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/Player'
+  Topic:
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      popularity:
+        type: integer
+        format: int32
+      tag:
+        type: string
+  Topics:
+    type: array
+    items:
+      $ref: '#/definitions/Topic'
+  Post:
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      message:
+        type: string
+      tag:
+        type: string
+  Posts:
+    type: array
+    items:
+      $ref: '#/definitions/Post'
   Error:
     required:
       - code
