@@ -4,7 +4,8 @@ const noError = null;
 const TopicService = {
   addNewTopic: function(newTopic, onCompleteCallback) {
     let topic = new TopicModel();
-    topic.name = newTopic.name;
+    topic.topicId = newTopic.topicId;
+    topic.topicName = newTopic.topicName;
     topic.description = newTopic.description;
     topic.image = newTopic.image;
     topic.popularity = newTopic.popularity;

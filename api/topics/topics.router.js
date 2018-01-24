@@ -16,6 +16,8 @@ router.post('/', function(req, res) {
         res.status(400).send({ error: 'Something went wrong, please check and tray again..!' });
         return;
       }
+      res.status(201).send(result);
+      return;
     });
 
   } catch (err) {
