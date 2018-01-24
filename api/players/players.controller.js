@@ -1,17 +1,17 @@
 const playerService = require('./players.service');
 
 let PlayerController = {
-    createPlayerProfile: function(playerDetails, onComplete) {
-        playerService.createPlayerProfile(playerDetails,onComplete);
+    createPlayerProfile: function(playerDetails, onCompleteCallback) {
+        playerService.createPlayerProfile(playerDetails,onCompleteCallback);
     },
-    getPlayers: function(filterParams, onComplete) {
-        playerService.getPlayers(filterParams, onComplete);
+    getPlayers: function(filterParams, onCompleteCallback) {
+        playerService.getPlayers(filterParams, onCompleteCallback);
     },
-    getPlayerById: function (playerId, onComplete) {
-        playerService.getPlayerById(playerId, onComplete);
+    getPlayerById: function (playerId, onCompleteCallback) {
+        playerService.getPlayerById(playerId, onCompleteCallback);
     },
-    updatePlayerDetails: function (playerId, playerDetails, onComplete) {
-        playerService.updatePlayerDetails(playerId, playerDetails, onComplete);
+    updatePlayerDetails: function (playerId, playerDetails, onCompleteCallback) {
+        playerService.updatePlayerDetails(playerId, playerDetails, onCompleteCallback);
     }
 }
 

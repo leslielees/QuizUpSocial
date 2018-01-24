@@ -2,7 +2,7 @@ const PlayerModel = require('./players.entity');
 
 /* */
 const noError = null;
-let PlayerService = {
+const PlayerService = {
     createPlayerProfile: function (playerDetails, onCompleteCallback) {
         let player = new PlayerModel();
         player.playerId = playerDetails.playerId;

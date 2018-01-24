@@ -1,20 +1,16 @@
 const topicService = require('./topics.service');
 // const async = require('async');
 
-const addNewTopic = function(newProduct, done) {
-  topicService.addNewTopic(newProduct, done);
+let TopicController = {
+  addNewTopic: function(newTopic, onCompleteCallback) {
+    topicService.addNewTopic(newTopic, onCompleteCallback);
+  },
+  getAllTopics: function(onCompleteCallback) {
+    topicService.getAllTopics(onCompleteCallback);
+  },
+  getTopic: function(topicName, onCompleteCallback) {
+    topicService.getTopic(topicName, onCompleteCallback);
+  }
 }
 
-const getAllTopics = function(done) {
-  topicService.getAllTopics(done);
-}
-
-const getTopic = function(topicName, done) {
-  topicService.getTopic(topicName, done);
-}
-
-module.exports = {
-  addNewTopic,
-  getAllTopics,
-  getTopic
-}
+module.exports = TopicController;
