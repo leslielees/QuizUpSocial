@@ -2,17 +2,15 @@ const mongoose = require ('mongoose');
 
 let schema = new mongoose.Schema({
   postId: { type: Number, unique: true, required: true },
-  playerId: { type: Number, unique: true, required: true },
-  topicId: { type: Number, unique: true, required: true },
+  playerId: { type: Number, required: true },
+  topicName: { type: Number, required: true },
   title: { type: String },
-  comments: { type: String }
+  comment: { type: String }
 }, { collection: 'posts' });
 
 // Composite Unique key
 schema.index({
-  postId: 1,
-  playerId: 1,
-  topicId: 1,
+  postId: 1
 }, {
   unique: true
 });

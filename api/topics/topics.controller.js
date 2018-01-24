@@ -1,5 +1,5 @@
 const topicService = require('./topics.service');
-const async = require('async');
+// const async = require('async');
 
 const addNewTopic = function(newProduct, done) {
   topicService.addNewTopic(newProduct, done);

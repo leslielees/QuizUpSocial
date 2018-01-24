@@ -31,18 +31,29 @@ const getAllTopics = function(done) {
     .select(fieldOptions)
     //.skip((page > 0) ? limit * (page - 1) : 0)
     //.limit(limit)
-    .exec((err, colln) => {
+    .exec((err, topicColln) => {
       if (err) {
         console.error('Error in finding topics, ERROR::', err, ' queries for ', query);
         done(err);
         return;
       }
-      done(null, colln);
+      done(null, topicColln);
     });
 }
 
 const getTopic = function(topicName, done) {
-  TopicModel.findOne({ topicName: topicName}, function (err, doc){
-    // doc is a Document
+  TopicModel.findOne({ topicName: topicName}, function (err, topicColln){
+    if (err) {
+      console.error('Error in finding the specified topic, ERROR::', err, ' queries for ', query);
+      done(err);
+      return;
+    }
+    done(null, topicColln);
   });
 }
+
+module.exports = {
+  addNewTopic,
+  getAllTopics,
+  getTopic
+};

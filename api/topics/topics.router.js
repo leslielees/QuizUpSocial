@@ -23,7 +23,7 @@ router.post('/', function(req, res) {
     res.status(500).send({ error: 'Unexpected internal error, please try later..!' });
     return;
   }
-})
+});
 
 router.get('/', function(req, res) {
   try {
@@ -41,13 +41,13 @@ router.get('/', function(req, res) {
     res.status(500).send({ error: 'Unexpected internal error, please try later..!' });
     return;
   }
-})
+});
 
 
-router.get('/topic/:name', function(req, res) {
+router.get('/:name', function(req, res) {
   try {
-    //let topicName = req.body;
-    topicCtrl.getTopic(function (req.params.name, err, result) {
+    let topicName = req.params.name;
+    topicCtrl.getTopic(topicName, function (req, err, result) {
       if (err) {
         console.error('Error in GET of topic, ERROR::', err);
         res.status(400).send({error: 'Something went wrong, please try later..!'});
