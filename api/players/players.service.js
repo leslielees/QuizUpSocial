@@ -70,7 +70,6 @@ const PlayerService = {
                 onCompleteCallback(err);
                 return;
             }
-            console.log(player);
             Object.assign(player, playerDetails);
             player.save((err, savedDoc) => {
                 if (err) {

@@ -5,7 +5,13 @@ let schema = new mongoose.Schema({
   topicName: { type: String, unique: true, required: true },
   description: { type: String },
   image: { type: String },
-  popularity: { type: Number }
+  popularity: { type: Number },
+
+  //reference
+  posts: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'posts'
+  }]
 }, { collection: 'topics' });
 
 // Composite Unique key

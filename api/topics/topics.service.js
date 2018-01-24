@@ -33,6 +33,7 @@ const TopicService = {
       .select(fieldOptions)
       //.skip((page > 0) ? limit * (page - 1) : 0)
       //.limit(limit)
+      .populate("posts")
       .exec((err, topicColln) => {
         if (err) {
           console.error('Error in finding topics, ERROR::', err, ' queries for ', query);

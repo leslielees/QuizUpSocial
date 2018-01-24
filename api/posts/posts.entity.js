@@ -1,11 +1,10 @@
 const mongoose = require ('mongoose');
 
 let schema = new mongoose.Schema({
-  postId: { type: Number, unique: true, required: true },
-  playerId: { type: Number, required: true },
-  topicName: { type: Number, required: true },
-  title: { type: String },
-  comment: { type: String }
+  postId: {type: Number, unique: true, required: true},
+  postedBy: [{ type: mongoose.Schema.Types.ObjectId, required: true, ref: 'players' }],
+  //topicId: { type: Number, required: true }, - we dont need topic ID as topic already contains posts reference
+  title: { type: String }
 }, { collection: 'posts' });
 
 // Composite Unique key
