@@ -8,7 +8,7 @@ const topicCtrl = require('./topics.controller');
  */
 router.post('/', function(req, res) {
   try {
-    let newTopic = req.query;
+    let newTopic = req.body;
     topicCtrl.addNewTopic(newTopic, function (err, result) {
       if (err) {
         console.error('Error in adding new topics, ERROR::', err);

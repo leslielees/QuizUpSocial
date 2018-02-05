@@ -1,13 +1,10 @@
 const PlayerModel = require('./players.entity');
-const TopicModel = require('../topics/topics.entity');
-const PostModel = require('../posts/posts.entity');
 
 
 /* */
 const noError = null;
 const PlayerService = {
     createPlayerProfile: function (playerDetails, onCompleteCallback) {
-      console.log(playerDetails);
         let player = new PlayerModel();
         player.playerId = playerDetails.playerId;
         player.name.firstName = playerDetails.firstName;
@@ -39,7 +36,6 @@ const PlayerService = {
         //Query the DB and if no errors, send all the books
         PlayerModel
             .find({})
-            .populate("posts")
             .sort(sortBy)
             .skip((page > 0) ? limit * (page - 1) : 0)
             .limit(limit)

@@ -12,7 +12,7 @@ const mongoose = require("mongoose"),
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-let port = 4030;
+let port = 3030;
 
 /* Create DB Connection */
 const mongoConnection = require('./mongoConnection');
