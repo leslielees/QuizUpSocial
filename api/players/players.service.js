@@ -1,9 +1,13 @@
 const PlayerModel = require('./players.entity');
+const TopicModel = require('../topics/topics.entity');
+const PostModel = require('../posts/posts.entity');
+
 
 /* */
 const noError = null;
 const PlayerService = {
     createPlayerProfile: function (playerDetails, onCompleteCallback) {
+      console.log(playerDetails);
         let player = new PlayerModel();
         player.playerId = playerDetails.playerId;
         player.name.firstName = playerDetails.firstName;
@@ -35,6 +39,7 @@ const PlayerService = {
         //Query the DB and if no errors, send all the books
         PlayerModel
             .find({})
+            .populate("posts")
             .sort(sortBy)
             .skip((page > 0) ? limit * (page - 1) : 0)
             .limit(limit)
@@ -62,6 +67,7 @@ const PlayerService = {
             });
     },
     updatePlayerDetails: function (playerId, playerDetails, onCompleteCallback) {
+        let playerData = playerDetails;
         PlayerModel
         .findOne({"playerId": playerId})
         .exec((err, player) => {
@@ -70,7 +76,16 @@ const PlayerService = {
                 onCompleteCallback(err);
                 return;
             }
-            Object.assign(player, playerDetails);
+            //Object.assign(player, playerDetails);
+            if(playerData.firstName)
+              player.name.firstName = playerData.firstName;
+            if(playerData.lastName)
+              player.name.lastName = playerData.lastName;
+            if(playerData.nickname)
+              player.nickname = playerData.nickname;
+            if(playerData.password)
+              player.password = playerData.password;
+
             player.save((err, savedDoc) => {
                 if (err) {
                     console.error("Error in updating player details, ERROR::", err);
@@ -80,7 +95,7 @@ const PlayerService = {
                     onCompleteCallback(noError, savedDoc);
                     return;
                 }
-            }); 
+            });
         });
     }
 }

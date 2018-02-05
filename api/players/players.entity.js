@@ -2,7 +2,7 @@ const mongoose = require ('mongoose');
 
 let schema = new mongoose.Schema({
   playerId: { type: Number, unique: true, required: true },
-  name: { 
+  name: {
     firstName: { type: String, required: true },
     lastName: { type: String },
   },
@@ -10,7 +10,7 @@ let schema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   profilePic: { type: String },
-  totalGamesPlayed: { type: Number }
+  totalGamesPlayed: { type: Number },
 }, { collection: 'players' });
 
 // Composite Unique key

@@ -8,7 +8,7 @@ const postsCtrl = require('./posts.controller');
  */
 router.post('/', function(req, res) {
   try {
-    let newPost = req.body;
+    let newPost = req.query;
     postsCtrl.addPost(newPost, function (err, result) {
       if (err) {
         console.error('Error in saving the post, ERROR::', err);
@@ -49,6 +49,7 @@ router.get('/', function(req, res) {
 
 router.get('/:id', function(req, res) {
   try {
+    console.log(req.params.id);
     let postId = req.params.id;
 
     postsCtrl.getPostById(postId, function (err, result) {

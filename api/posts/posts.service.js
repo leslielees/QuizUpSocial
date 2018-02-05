@@ -37,14 +37,14 @@ const addPost = function(newPost, done) {
                     done(null, savedDoc);
                     return;
                 }
-              }); 
+              });
             });
           return;
         }
       });
     });
 
-  
+
 };
 
 const getAllPosts = function(done) {
@@ -72,7 +72,7 @@ const getPostById = function(postId, done) {
   PostModel
     .findOne({ postId: postId})
     .populate("players")
-    .exec(err, function (err, postColln){
+    .exec(function (err, postColln){
       if (err) {
         console.error('Error in finding the specified topic, ERROR::', err, ' queries for ', query);
         done(err);
